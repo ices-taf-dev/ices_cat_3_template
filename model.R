@@ -8,7 +8,7 @@
 ## After:  model/advice.rds
 
 library(TAF)
-library(cat3advice)
+taf.library(cat3advice)
 library(dplyr)
 
 mkdir("model")

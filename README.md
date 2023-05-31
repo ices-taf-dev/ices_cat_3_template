@@ -12,16 +12,7 @@ platessa*) in Division 7.e (western English Channel) in `R` from WGCSE
 The following R packages from CRAN are required to run the assessment:
 
 ``` r
-TAF
-```
-
-They can be installed with:
-
-``` r
-### list with required packages
-req_pkgs <- c("TAF")
-### install/update packages
-install.packages(req_pkgs)
+icesTAF
 ```
 
 Furthermore, the following packages from GitHub are required:
@@ -30,20 +21,12 @@ Furthermore, the following packages from GitHub are required:
 cat3advice
 ```
 
-For exact reproducibility, it is recommended to use exactly the same
-package version as used in the assessment. These package are
-automatically installed into a local library when running the TAF
-assessment (see below) or by calling
+They can be installed via:
 
 ``` r
-taf.boot()
-```
-
-Alternatively, they can be manually installed from GitHub with
-
-``` r
-TAF::taf.libPaths() # install packages into local TAF library
-remotes::install_github("shfischer/cat3advice", ref = "ad220eb")
+install.packages("icesTAF")
+# install missing packages
+install.deps(repos = c("https://cloud.r-project.org", "https://ices-tools-prod.r-universe.dev"))
 ```
 
 ## Running the assessment

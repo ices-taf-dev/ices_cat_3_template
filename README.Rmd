@@ -27,6 +27,7 @@ cat3advice
 They can be installed via:
 ```{r, eval = FALSE}
 install.packages("icesTAF")
+library(icesTAF)
 # install missing packages
 install.deps(repos = c("https://cloud.r-project.org", "https://ices-tools-prod.r-universe.dev"))
 ```

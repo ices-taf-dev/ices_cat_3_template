@@ -43,8 +43,10 @@ jobs:
           # Create an orphan taf branch (no history)
           git checkout --orphan taf
 
-          # Clear index and working tree
-          git rm -rf . || true
+          # Remove only the .github folder from index and working tree
+          if [ -d ".github" ]; then
+            git rm -rf .github
+          fi
 
           # Force-add TAF folders only if they exist
           for dir in data model report output boot/data boot/software; do

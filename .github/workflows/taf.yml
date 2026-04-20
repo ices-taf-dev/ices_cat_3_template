@@ -42,7 +42,8 @@ jobs:
 
       - name: Run TAF
         run: |
-          Rscript -e "TAF::taf.clean()"
+          Rscript -e "TAF::clean.boot(force = TRUE)"
+          Rscript -e "TAF::clean()"
           Rscript -e "TAF::taf.boot()"
           Rscript -e "TAF::source.all()"
 

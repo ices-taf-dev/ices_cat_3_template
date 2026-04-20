@@ -45,28 +45,59 @@ jobs:
           Rscript -e "TAF::taf.boot()"
           Rscript -e "TAF::source.all()"
 
-      - name: Commit results to taf branch
+
+      - name: Commit results to taf branch (clean tree, preserved history)
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          # Create an orphan taf branch (no history)
-          git checkout --orphan taf
+          # Fetch remote taf if it exists
+          git fetch origin taf || true
 
-          # Remove only the .github folder from index and working tree
+          # Start from an empty index (clean-slate content)
+          git checkout --orphan taf-tmp
+          git reset --hard
+
+          # Remove GitHub workflows from results branch
           if [ -d ".github" ]; then
             git rm -rf .github
           fi
 
-          # Force-add TAF folders only if they exist
-          for dir in data model report output boot/data boot/software; do
+          # Force-add TAF result folders if they exist
+          for dir in data model report output; do
             if [ -d "$dir" ]; then
               git add -f "$dir"
             fi
           done
 
-          # Commit only if something was added
-          git diff --cached --quiet || git commit -m "Run TAF and publish results"
+          # Abort if nothing changed
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
 
-          git push origin taf --force
+          # Create commit tree
+          TREE=$(git write-tree)
 
+          # If remote taf exists, use it as parent; otherwise create root commit
+          if git show-ref --quiet refs/remotes/origin/taf; then
+            PARENT=$(git rev-parse origin/taf)
+            COMMIT=$(echo "Run TAF and publish results" | \
+              git commit-tree "$TREE" -p "$PARENT")
+          else
+            COMMIT=$(echo "Run TAF and publish results" | \
+              git commit-tree "$TREE")
+          fi
+
+          # Update taf branch to point at new commit
+          git update-ref refs/heads/taf "$COMMIT"
+
+          # Create a date-based tag (UTC for reproducibility)
+          TAG="taf-$(date -u +%Y-%m-%d)"
+
+          # Create or update the tag to point to this commit
+          git tag -f "$TAG" "$COMMIT"
+
+          # Push branch and tag
+          git push origin refs/heads/taf:taf --tags --force
+          

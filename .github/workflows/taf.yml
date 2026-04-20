@@ -5,6 +5,11 @@ on:
   workflow_dispatch:
   push:
     branches: [ main, master ]
+    paths:
+      - '**/*.R'
+      - 'boot/initial/data/**'
+      - 'boot/DATA.bib'
+      - 'boot/SOFTWARE.bib'
 
 jobs:
   taf:

@@ -43,7 +43,8 @@ jobs:
           # Create or switch to taf branch
           git checkout -B taf
 
-          git add .
+          # Force-add TAF folders even if ignored
+          git add -f data model report output boot/data boot/software
+          
           git commit -m "Run TAF and publish results" || echo "No changes to commit"
-
           git push origin taf --force

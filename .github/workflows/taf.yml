@@ -40,11 +40,21 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          # Create or switch to taf branch
-          git checkout -B taf
+          # Create an orphan taf branch (no history)
+          git checkout --orphan taf
 
-          # Force-add TAF folders even if ignored
-          git add -f data model report output boot/data boot/software
-          
-          git commit -m "Run TAF and publish results" || echo "No changes to commit"
+          # Clear index and working tree
+          git rm -rf . || true
+
+          # Force-add TAF folders only if they exist
+          for dir in data model report output boot/data boot/software; do
+            if [ -d "$dir" ]; then
+              git add -f "$dir"
+            fi
+          done
+
+          # Commit only if something was added
+          git diff --cached --quiet || git commit -m "Run TAF and publish results"
+
           git push origin taf --force
+

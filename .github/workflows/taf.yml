@@ -97,10 +97,20 @@ jobs:
           git update-ref refs/heads/taf "$COMMIT"
 
           # Generate unique TAF run ID
-          TAF_ID="taf-$(date -u +%Y%m%d-%H%M%SZ)"
+          TAG="run-$(date -u +%Y%m%d-%H%M)"
+
+          # ----- determine tag prefix from commit message -----
+          MSG="${{ github.event.head_commit.message }}"
+
+          # override if commit message contains --tag-final or --tag-advice
+          if echo "$MSG" | grep -q -- "--tag-final"; then
+            TAG="final-$(date -u %Y)"
+          elif echo "$MSG" | grep -q -- "--tag-advice"; then
+            TAG="advice-$(date -u %Y)"
+          fi
 
           # Tag this commit with the TAF ID
-          git tag "$TAF_ID" "$COMMIT"
+          git tag "$TAG" "$COMMIT"
 
           # Push branch and tag
           git push origin refs/heads/taf:taf --tags --force

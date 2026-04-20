@@ -42,9 +42,9 @@ jobs:
 
       - name: Run TAF
         run: |
+          Rscript -e "TAF::taf.clean()"
           Rscript -e "TAF::taf.boot()"
           Rscript -e "TAF::source.all()"
-
 
       - name: Commit results to taf branch (clean tree, preserved history)
         run: |
@@ -97,11 +97,11 @@ jobs:
           # Update taf branch to point at new commit
           git update-ref refs/heads/taf "$COMMIT"
 
-          # Create a date-based tag (UTC for reproducibility)
-          TAG="taf-$(date -u +%Y-%m-%d)"
+          # Generate unique TAF run ID
+          TAF_ID="taf-$(date -u +%Y%m%d-%H%M%SZ)"
 
-          # Create or update the tag to point to this commit
-          git tag -f "$TAG" "$COMMIT"
+          # Tag this commit with the TAF ID
+          git tag "$TAF_ID" "$COMMIT"
 
           # Push branch and tag
           git push origin refs/heads/taf:taf --tags --force

@@ -22,7 +22,7 @@ jobs:
       - name: Install R dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          repositories: |
+          extra-repositories: |
             CRAN=https://cloud.r-project.org
             TAF=https://ices-tools-prod.r-universe.dev
             PPM=https://packagemanager.posit.co/cran/__linux__/jammy/latest

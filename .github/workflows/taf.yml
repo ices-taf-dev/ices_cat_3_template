@@ -104,9 +104,9 @@ jobs:
 
           # override if commit message contains --tag-final or --tag-advice
           if echo "$MSG" | grep -q -- "--tag-final"; then
-            TAG="final-$(date -u %Y)"
+            TAG="final-$(date -u +%Y)"
           elif echo "$MSG" | grep -q -- "--tag-advice"; then
-            TAG="advice-$(date -u %Y)"
+            TAG="advice-$(date -u +%Y)"
           fi
 
           # Tag this commit with the TAF ID

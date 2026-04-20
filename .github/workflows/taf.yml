@@ -57,13 +57,11 @@ jobs:
 
           # Start from an empty index (clean-slate content)
           git checkout --orphan taf-tmp
-          git reset --hard
 
           # Remove GitHub workflows from results branch
           if [ -d ".github" ]; then
             git rm -rf .github
           fi
-
 
           # Stage *everything* that exists in the working tree
           # (respects .gitignore except where -f is used later)

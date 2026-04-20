@@ -16,8 +16,6 @@ library(dplyr)
 ### create folder to store data
 mkdir("data")
 
-cat("hello - test change to data.R\n", file = "data/hello.txt")
-
 ### ------------------------------------------------------------------------ ###
 ### Biomass index data ####
 ### ------------------------------------------------------------------------ ###

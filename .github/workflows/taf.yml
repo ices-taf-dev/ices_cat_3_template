@@ -63,6 +63,11 @@ jobs:
             git rm -rf .github
           fi
 
+
+          # Stage *everything* that exists in the working tree
+          # (respects .gitignore except where -f is used later)
+          git add -A
+
           # Force-add TAF result folders if they exist
           for dir in data model report output; do
             if [ -d "$dir" ]; then
@@ -100,4 +105,3 @@ jobs:
 
           # Push branch and tag
           git push origin refs/heads/taf:taf --tags --force
-          

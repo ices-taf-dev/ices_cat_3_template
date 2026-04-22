@@ -48,3 +48,13 @@ vignettes/*.pdf
 /boot/data/
 /boot/library/
 /boot/software/
+
+renv.lock
+
+.Rprofile
+
+renv/
+
+.vscode/
+
+.devcontainer/

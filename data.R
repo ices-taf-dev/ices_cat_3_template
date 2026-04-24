@@ -60,3 +60,6 @@ lngth <- lngth_full %>%
   summarise(numbers = sum(numbers))
 write.taf(lngth, file = "data/length_data.csv")
 saveRDS(lngth, file = "data/length_data.rds")
+
+### temp file to store full length data
+write.taf(lngth_full, file = "data/length_data_full.csv")

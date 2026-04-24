@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "timestamp_utc": "2026-04-24T14:15:58Z",
+  "repository": "ices-taf-dev/ices_cat_3_template",
+  "source_ref": "refs/heads/main",
+  "source_sha": "f85a7b1a0fe007578198d7cf9a3ca6fb3fedace2",
+  "runner": "Linux",
+  "r_version": "4.5.3",
+  "taf_version": "4.3.1",
+  "commit_message": "a check on the squash idea",
+  "boot_hash": "e68346c3bdf7e652a6c5241bb917864cdb802d2611811cbcf8e3382fd787e38e",
+  "boot_reused": true,
+  "boot_reuse_comment": "boot inputs unchanged; reused boot/data from previous taf",
+  "squash_mode": "since_last_tag",
+  "last_tag": "final-2026",
+  "tag_applied": "none"
+}

@@ -13,7 +13,7 @@ on:
       - .github/workflows/taf.yml
 
 jobs:
-  taf:
+  taf-run:
     uses: ices-tools-prod/workflows/.github/workflows/taf-run.yml@main
     with:
       r-version: "release"

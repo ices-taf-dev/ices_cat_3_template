@@ -10,10 +10,11 @@ on:
       - 'boot/initial/data/**'
       - 'boot/DATA.bib'
       - 'boot/SOFTWARE.bib'
+      - .github/workflows/taf.yml
 
 jobs:
   taf:
-    uses: ices-tools-prod/workflows/.github/workflows/taf-run.yml@ddb36a09cfd67b8888c27853c45c14695ad96881
+    uses: ices-tools-prod/workflows/.github/workflows/taf-run.yml@main
     with:
       r-version: "release"
       timeout-minutes: 10

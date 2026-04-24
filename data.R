@@ -63,3 +63,4 @@ saveRDS(lngth, file = "data/length_data.rds")
 
 # change to get code to run
 cat("I hope it ran!!", file = "data/hello.txt")
+cat("Good bye aparently came from God Be With Ye, and slowly got compressed to goodbye", file = "data/goodbye.txt")

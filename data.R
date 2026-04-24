@@ -62,4 +62,4 @@ write.taf(lngth, file = "data/length_data.csv")
 saveRDS(lngth, file = "data/length_data.rds")
 
 # change to get code to run
-cat("I hope it ran!", file = "data/hello.txt")
+cat("I hope it ran!!", file = "data/hello.txt")
